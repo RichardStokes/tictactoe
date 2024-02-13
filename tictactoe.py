@@ -54,37 +54,32 @@ class TicTacToeGame:
 			if self.winning_condition(*coords, mark):
 				self.game_over = True
 				print("Congratulations, you won!")
-			self.player_1 = not self.player_1
+			elif self.board_full():
+				self.game_over = True
+				print("The game is tied!")
+			else:
+				self.player_1 = not self.player_1
 
 	def winning_condition(self, x, y, mark, previous_coords=None):
-		adj_coords = self.adjacent_coordinates(x,y)
+		if previous_coords:
+			x_direction = x - previous_coords[0]
+			y_direction = y - previous_coords[1]
 
-		# Remove the previous square from any possible path forward
-		if previous_coords in adj_coords:
-			adj_coords.remove(previous_coords)
+			x += x_direction
+			y += y_direction
 
-			# if from_same_row(prev_coords):
-			#	search_same_row
-			# elsif from_same_col(prev_coords):
-			#	search_same_col(prev_coords):
-			# elsif from_diag(prev_coords):
-			#	search_next_diag
+			if x in range(3) and y in range(3):
+				if self.board[x][y] == mark:
+					return True 
+		else:
+			adj_coords = self.adjacent_coordinates(x,y)
 
-		# Loop through the adjacent squares, checking for a matching mark	
-		for coords in adj_coords:
-			i, j = coords
-			try:
+			# Loop through the adjacent squares, checking for a matching mark	
+			for coords in adj_coords:
+				i, j = coords
 				if self.board[i][j] == mark:
-					if not previous_coords:
-						return self.winning_condition(*coords, mark, previous_coords=(x,y))
-					else:
-						i_direction = i - previous_coords[0]
-						j_direction = j - previous_coords[1]
-						if self.board[i + i_direction][j + j_direction] == mark:
-							return True
-			except IndexError:
-				pass
-		return False		
+					return self.winning_condition(*coords, mark, previous_coords=(x,y))
+		return False
 
 	# Find a list of all squares adjacent to a certain square
 	def adjacent_coordinates(self,x,y):
@@ -106,8 +101,11 @@ class TicTacToeGame:
 				if j == "-":
 					return False
 		return True
-
-
+	
+	def valid_coordindates(self, coords):
+		x,y = coords
+		valid = True if x in range(3) and y in range(3) else False
+		return valid
 
 
 if __name__ == '__main__':

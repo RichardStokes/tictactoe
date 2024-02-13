@@ -56,5 +56,10 @@ class TestTicTacToeGame(unittest.TestCase):
                 self.game.board[i][j] = "X"
         self.assertTrue(self.game.board_full())
 
+    
+    def test_valid_coordinates(self):
+        invalid_coords = (-1,-1)
+        self.assertFalse(self.game.valid_coordindates(invalid_coords))
+
 if __name__ == "__main__":
     unittest.main()
