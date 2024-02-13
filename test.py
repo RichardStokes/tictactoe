@@ -43,5 +43,11 @@ class TestTicTacToeGame(unittest.TestCase):
         self.assertTrue(winning)
 
 
+    def test_board_full(self):
+        for i in range(3):
+            for j in range(3):
+                self.game.board[i][j] = "X"
+        self.assertTrue(self.game.board_full())
+
 if __name__ == "__main__":
     unittest.main()
