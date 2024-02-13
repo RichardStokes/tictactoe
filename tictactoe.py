@@ -41,7 +41,7 @@ class TicTacToeGame:
 	def start_game(self):
 		print("""Welcome to Tic Tac Toe!
 			Player 1, please start!:""")
-		print(self.board)
+		print(self)
 		while not self.game_over:
 			mark = 'X' if self.player_1 else '0'
 			marked = False
@@ -50,6 +50,7 @@ class TicTacToeGame:
 				while coords == None:
 					coords = self.prompt_for_coordinates()
 				marked = self.mark_square(*coords, mark)
+			print(self)
 			if self.winning_condition(*coords, mark, 4):
 				self.game_over = True
 				print("Congratulations, you won!")
