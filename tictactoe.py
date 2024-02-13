@@ -51,7 +51,7 @@ class TicTacToeGame:
 					coords = self.prompt_for_coordinates()
 				marked = self.mark_square(*coords, mark)
 			print(self)
-			if self.winning_condition(*coords, mark, 4):
+			if self.winning_condition(*coords, mark, 1):
 				self.game_over = True
 				print("Congratulations, you won!")
 			self.player_1 = not self.player_1
@@ -76,12 +76,13 @@ class TicTacToeGame:
 				pass
 		return False		
 
+	# Find a list of all squares adjacent to a certain square
 	def adjacent_coordinates(self,x,y):
 		coords = []
 		for i in range(x-1, x+2):
-			if i in range(0, 4):
+			if i in range(3):
 				for j in range(y-1, y+2):
-					if j in range(0, 4):
+					if j in range(3):
 						coords.append((i, j))
 		coords.remove((x,y))
 		return coords
