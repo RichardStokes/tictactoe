@@ -63,12 +63,12 @@ class TicTacToeGame:
 		if previous_coords in adj_coords:
 			adj_coords.remove(previous_coords)
 
-		# if from_same_row(prev_coords):
-		#	search_same_row
-		# elsif from_same_col(prev_coords):
-		#	search_same_col(prev_coords):
-		# elsif from_diag(prev_coords):
-		#	search_next_diag
+			# if from_same_row(prev_coords):
+			#	search_same_row
+			# elsif from_same_col(prev_coords):
+			#	search_same_col(prev_coords):
+			# elsif from_diag(prev_coords):
+			#	search_next_diag
 
 		# Loop through the adjacent squares, checking for a matching mark	
 		for coords in adj_coords:
