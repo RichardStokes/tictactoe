@@ -78,19 +78,10 @@ class TicTacToeGame:
 					if not previous_coords:
 						return self.winning_condition(*coords, mark, previous_coords=(x,y))
 					else:
-						if i == previous_coords[0]:
-							direction = j - previous_coords[j]
-							if self.board[i][j + direction]:
-								return True
-						elif j == previous_coords[1]:
-							direction = i - previous_coords[i]
-							if self.board[i+direction][j]:
-								return True
-						else:
-							i_direction = i - previous_coords[0]
-							j_direction = j - previous_coords[1]
-							if self.board[i+i_direction][j+j_direction]:
-								return True
+						i_direction = i - previous_coords[0]
+						j_direction = j - previous_coords[1]
+						if self.board[i + i_direction][j + j_direction] == mark:
+							return True
 			except IndexError:
 				pass
 		return False		
