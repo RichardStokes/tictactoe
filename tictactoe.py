@@ -85,10 +85,9 @@ class TicTacToeGame:
 	def adjacent_coordinates(self,x,y):
 		coords = []
 		for i in range(x-1, x+2):
-			if i in range(3):
-				for j in range(y-1, y+2):
-					if j in range(3):
-						coords.append((i, j))
+			for j in range(y-1, y+2):
+				if self.valid_coordindates((i,j)):
+					coords.append((i, j))
 		try:
 			coords.remove((x,y))
 		except ValueError as e:
