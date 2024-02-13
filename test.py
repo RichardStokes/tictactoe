@@ -39,7 +39,7 @@ class TestTicTacToeGame(unittest.TestCase):
         for coords in winning_coords:
             x,y = coords
             self.game.board[x][y] = "X"
-        winning = self.game.winning_condition(2,2, "X", 1)
+        winning = self.game.winning_condition(2,2, "X")
         self.assertTrue(winning)
 
 
