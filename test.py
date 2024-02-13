@@ -30,6 +30,14 @@ class TestTicTacToeGame(unittest.TestCase):
         adjacent_coords = [(0,0), (0,1), (0,2), (1,0), (1,2), (2,0), (2,1), (2,2)]
         self.assertEqual(adjacent_coords, self.game.adjacent_coordinates(*starting_coords))
 
+    def test_winning_condition(self):
+        winning_coords = [(0,0), (1,1), (2,2)]
+        for coords in winning_coords:
+            x,y = coords
+            self.game.board[x][y] = "X"
+        winning = self.game.winning_condition(2,2, "X", 3)
+        self.assertTrue(winning)
+
 
 if __name__ == "__main__":
     unittest.main()
