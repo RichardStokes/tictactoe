@@ -26,16 +26,20 @@ class TestTicTacToeGame(unittest.TestCase):
     
 
     def test_adjacent_coordinates(self):
-        starting_coords = (1,1)
-        adjacent_coords = [(0,0), (0,1), (0,2), (1,0), (1,2), (2,0), (2,1), (2,2)]
-        self.assertEqual(adjacent_coords, self.game.adjacent_coordinates(*starting_coords))
+        middle_coords = (1,1)
+        adjacent_coords = [(0,0), (0,1), (0,2), (1,0), (1,2), (2,0), (2,1), (2,2)].sort()
+        self.assertEqual(adjacent_coords, self.game.adjacent_coordinates(*middle_coords).sort())
+
+        corner_coords = (2,2)
+        adjacent_coords = [(2,1), (1,1), (1,2)].sort()
+        self.assertEqual(adjacent_coords, self.game.adjacent_coordinates(*corner_coords).sort())
 
     def test_winning_condition(self):
         winning_coords = [(0,0), (1,1), (2,2)]
         for coords in winning_coords:
             x,y = coords
             self.game.board[x][y] = "X"
-        winning = self.game.winning_condition(2,2, "X", 3)
+        winning = self.game.winning_condition(2,2, "X", 1)
         self.assertTrue(winning)
 
 
