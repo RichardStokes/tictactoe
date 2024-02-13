@@ -86,7 +86,7 @@ class TicTacToeGame:
 		coords = []
 		for i in range(x-1, x+2):
 			for j in range(y-1, y+2):
-				if self.valid_coordindates((i,j)):
+				if self.valid_coordindates(i,j):
 					coords.append((i, j))
 		try:
 			coords.remove((x,y))
@@ -101,7 +101,7 @@ class TicTacToeGame:
 					return False
 		return True
 	
-	def valid_coordindates(self, coords):
+	def valid_coordindates(self, *coords):
 		x,y = coords
 		valid = True if x in range(3) and y in range(3) else False
 		return valid
