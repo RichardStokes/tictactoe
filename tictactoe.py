@@ -89,6 +89,13 @@ class TicTacToeGame:
 		except ValueError as e:
 			print("<!> Error: invalid indices passed to function. <!>")
 		return coords
+	
+	def board_full(self):
+		for i in self.board:
+			for j in i:
+				if j == "-":
+					return False
+		return True
 
 
 
