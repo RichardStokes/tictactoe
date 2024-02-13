@@ -51,27 +51,46 @@ class TicTacToeGame:
 					coords = self.prompt_for_coordinates()
 				marked = self.mark_square(*coords, mark)
 			print(self)
-			if self.winning_condition(*coords, mark, 1):
+			if self.winning_condition(*coords, mark):
 				self.game_over = True
 				print("Congratulations, you won!")
 			self.player_1 = not self.player_1
 
-	def winning_condition(self, x, y, mark, k, previous_coords=None):
+	def winning_condition(self, x, y, mark, previous_coords=None):
 		adj_coords = self.adjacent_coordinates(x,y)
 
 		# Remove the previous square from any possible path forward
 		if previous_coords in adj_coords:
 			adj_coords.remove(previous_coords)
 
+		# if from_same_row(prev_coords):
+		#	search_same_row
+		# elsif from_same_col(prev_coords):
+		#	search_same_col(prev_coords):
+		# elsif from_diag(prev_coords):
+		#	search_next_diag
+
 		# Loop through the adjacent squares, checking for a matching mark	
 		for coords in adj_coords:
 			i, j = coords
 			try:
 				if self.board[i][j] == mark:
-					if k > 0:
-						return self.winning_condition(*coords, mark, k-1, previous_coords=(x,y))
+					if not previous_coords:
+						return self.winning_condition(*coords, mark, previous_coords=(x,y))
 					else:
-						return True
+						if i == previous_coords[0]:
+							direction = j - previous_coords[j]
+							if self.board[i][j + direction]:
+								return True
+						elif j == previous_coords[1]:
+							direction = i - previous_coords[i]
+							if self.board[i+direction][j]:
+								return True
+						else:
+							i_direction = i - previous_coords[0]
+							j_direction = j - previous_coords[1]
+							if self.board[i+i_direction][j+j_direction]:
+								return True
 			except IndexError:
 				pass
 		return False		
