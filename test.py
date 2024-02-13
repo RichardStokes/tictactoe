@@ -58,8 +58,8 @@ class TestTicTacToeGame(unittest.TestCase):
 
     
     def test_valid_coordinates(self):
-        self.assertTrue(self.game.valid_coordindates(0,2))
-        self.assertFalse(self.game.valid_coordindates(-1, 3))
+        self.assertTrue(self.game.valid_coordinates(0,2))
+        self.assertFalse(self.game.valid_coordinates(-1, 3))
 
 if __name__ == "__main__":
     unittest.main()
