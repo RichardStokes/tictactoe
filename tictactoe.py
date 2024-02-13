@@ -58,8 +58,12 @@ class TicTacToeGame:
 
 	def winning_condition(self, x, y, mark, k, previous_coords=None):
 		adj_coords = self.adjacent_coordinates(x,y)
+
+		# Remove the previous square from any possible path forward
 		if previous_coords in adj_coords:
 			adj_coords.remove(previous_coords)
+
+		# Loop through the adjacent squares, checking for a matching mark	
 		for coords in adj_coords:
 			i, j = coords
 			try:
