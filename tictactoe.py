@@ -84,7 +84,10 @@ class TicTacToeGame:
 				for j in range(y-1, y+2):
 					if j in range(3):
 						coords.append((i, j))
-		coords.remove((x,y))
+		try:
+			coords.remove((x,y))
+		except ValueError as e:
+			print("<!> Error: invalid indices passed to function. <!>")
 		return coords
 
 
