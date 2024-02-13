@@ -68,9 +68,8 @@ class TicTacToeGame:
 			x += x_direction
 			y += y_direction
 
-			if x in range(3) and y in range(3):
-				if self.board[x][y] == mark:
-					return True 
+			if self.valid_coordinates(x,y) and self.board[x][y] == mark:
+				return True 
 		else:
 			adj_coords = self.adjacent_coordinates(x,y)
 
@@ -101,7 +100,7 @@ class TicTacToeGame:
 					return False
 		return True
 	
-	def valid_coordindates(self, *coords):
+	def valid_coordinates(self, *coords):
 		x,y = coords
 		valid = True if x in range(3) and y in range(3) else False
 		return valid
