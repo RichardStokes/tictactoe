@@ -42,6 +42,13 @@ class TestTicTacToeGame(unittest.TestCase):
         winning = self.game.winning_condition(2,2, "X")
         self.assertTrue(winning)
 
+        not_winning_coords = [(0,0), (1,0), (1,1)]
+        for coords in not_winning_coords:
+            x, y = coords
+            self.game.board[x][y] = "X"
+        winning = self.game.winning_condition(1,1, "X")
+        self.assertFalse(winning)
+
 
     def test_board_full(self):
         for i in range(3):
