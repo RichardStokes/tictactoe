@@ -23,6 +23,12 @@ class TestTicTacToeGame(unittest.TestCase):
 -   -   -
 """
         self.assertMultiLineEqual(initial_state, x, "The board hasn't printed correctly.")
+    
+
+    def test_adjacent_coordinates(self):
+        starting_coords = (1,1)
+        adjacent_coords = [(0,0), (0,1), (0,2), (1,0), (1,2), (2,0), (2,1), (2,2)]
+        self.assertEqual(adjacent_coords, self.game.adjacent_coordinates(*starting_coords))
 
 
 if __name__ == "__main__":
