@@ -85,12 +85,8 @@ class TicTacToeGame:
 		coords = []
 		for i in range(x-1, x+2):
 			for j in range(y-1, y+2):
-				if self.valid_coordindates(i,j):
+				if self.valid_coordinates(i,j) and (i, j) != (x, y):
 					coords.append((i, j))
-		try:
-			coords.remove((x,y))
-		except ValueError as e:
-			print("<!> Error: invalid indices passed to function. <!>")
 		return coords
 	
 	def board_full(self):
