@@ -21,14 +21,18 @@ class TicTacToeGame:
 
 	
 	def __str__(self):
-		str = "\n"
-		for row in self.board:
-			x = ""
-			for cell in row:
-				x += (f"{cell}   ")
-			str += x.strip() + "\n"
-		return str
-		
+		'''Return a string representation of the board.'''
+
+		# Use shorter variable name for readability
+		b = self.board
+		str = f"""
+			{b[0][0]} | {b[0][1]} | {b[0][2]}
+			-+--+--+-
+			{b[1][0]} | {b[1][1]} | {b[1][2]}
+			-+--+--+-
+			{b[2][0]} | {b[2][1]} | {b[2][2]}
+"""
+		return str	
 	
 	def prompt_for_coordinates(self):
 		coord_string = input("Please enter the desired square:").split()
