@@ -100,10 +100,16 @@ class TicTacToeGame:
 					return False
 		return True
 	
+
 	def valid_coordinates(self, *coords):
 		x,y = coords
 		valid = True if x in range(3) and y in range(3) else False
 		return valid
+
+
+	def getCleanBoard(self):
+		rows, cols = (3,3)
+		return [['-' for i in range(cols)] for j in range(rows)]
 
 
 if __name__ == '__main__':
